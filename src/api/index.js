@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const configuration = {
-  baseURL: "https://example.com/api/",
+  baseURL: "https://jsonplaceholder.typicode.com/",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
@@ -21,7 +21,7 @@ var axiosInstance = axios.create(configuration);
 axiosInstance.interceptors.request.use(
   (config) => {
     console.log("config === >", config);
-    const oAuthTokan = localStorage.getItem("token") || null;
+    const oAuthTokan =localStorage.getItem("token") || null;
     let newHeaders = config.headers;
     if (oAuthTokan) {
       newHeaders = Object.assign({}, newHeaders, {

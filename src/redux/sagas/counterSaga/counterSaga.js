@@ -1,10 +1,19 @@
-import { put } from "redux-saga/effects";
-import { incrementAction } from "../../actions/counterActions";
+import { put,call } from "redux-saga/effects";
+import axiosInstance from "../../../api";
+import API from "../../../api/Api";
 import { decrement, increment, incrementByAmount } from "../../slices/counterSlice";
+const getPosts = (uri) => axiosInstance.get(uri)
+
 
 export function* incrementSaga({type,payload}) {
-
     console.log("incrementSaga ==>>",type,payload)
+    try {
+       const response =  yield call(API.get,"posts/1")
+        console.log("success response ==>> ",response)
+    } catch (error) {
+        console.log("error response ==>> ",error)
+    }
+  
     yield put(increment())
 }
 
